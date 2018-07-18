@@ -1,12 +1,14 @@
 <template>
-	<div class="signup">
-		<h3>Sign Up for Fashion App</h3>
-		<input type="text" v-model="name" placeholder="Display Name"><br>
-		<input type="text" v-model="email" placeholder="Email"><br>
-		<input type="password" v-model="password" placeholder="Password"><br>
-		<button v-on:click="signUp">Sign Up</button>
-		<p>Already have an account? <router-link to="/login">Sign In!</router-link></p>
-	</div>
+  <div class="container">
+    <div class="signup">
+      <h3>Sign Up for Fashion App</h3>
+      <input type="text" v-model="name" placeholder="Display Name"><br>
+      <input type="text" v-model="email" placeholder="Email"><br>
+      <input type="password" v-model="password" placeholder="Password"><br>
+      <button v-on:click="signUp">Sign Up</button>
+      <p>Already have an account? <router-link to="/login">Sign In!</router-link></p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -41,6 +43,26 @@
 </script>
 
 <style scoped="true">
+  .container {
+    background: #8179B7;
+    height: 94.9vh;
+    color: #FEFFFE;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .signup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+  }
+  
+  h3 {
+    padding: 15px 0px;
+    margin: 0;
+  }
+  
 	input {
 		width: 300px;
 		height: 30px;
@@ -51,6 +73,7 @@
 		padding: 10px;
 		border-radius: 5px;
 		font-size: 1.2rem;
+    color: #333;
 	}
 	
 	input:focus {
@@ -63,20 +86,22 @@
 		font-size: 1.2rem;
 		border: none;
 		outline: none;
-		background-color: #8663e5;
+		background-color: #52489C;
 		border-radius: 5px;
-		margin: 5px 0px;
+		margin: 15px 0px 0px;
 		color: #fbfbfb;
 	}
 	
 	button:hover {
-		background-color: #6540c9;
+		background-color: #fefffe;
+    color: #52489C;
 		cursor: pointer;
 	}
 	
 	a {
 		text-decoration: none;
-		color: #8663e5;
+		color: #fefffe;
+    font-weight: bold;
 	}
 	
 	a:hover {

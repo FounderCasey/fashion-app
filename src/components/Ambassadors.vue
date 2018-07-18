@@ -1,52 +1,41 @@
 <template>
 	<div>
 		<div class="featured">
-			<h2 v-on:click="listAmbassadors">Featured Ambassadors</h2>
+			<h2>Featured Ambassadors</h2>
 		</div>
 		<div class="container">
-			
+      <h3>Ambassadors</h3>
+			<article v-for="(user, idx) in users" :key="idx">
+        <img :src="user.image">
+        <h1>{{ user.name }}</h1>
+        <h3>{{ user.followers }} <i class="fas fa-users"></i></h3>
+        <h3>{{ user.location }}</h3>
+      </article>
 		</div>
 	</div>
 </template>
 
 <script>
 	import firebase from 'firebase'
-	
+	import { db } from '../main'
+  
 	export default {
 		name: 'ambassadors',
 		data () {
 			return {
-				name: '',
-				userId: '',
-				user: {}
+				users: []
 			}
 		},
-		methods: {
-			listAmbassadors: function() {
-				function listAllUsers(nextPageToken) {
-					// List batch of users, 1000 at a time.
-					admin.auth().listUsers(1000, nextPageToken)
-						.then(function(listUsersResult) {
-							listUsersResult.users.forEach(function(userRecord) {
-								console.log("user", userRecord.toJSON());
-							});
-							if (listUsersResult.pageToken) {
-								// List next batch of users.
-								listAllUsers(listUsersResult.pageToken)
-							}
-						})
-						.catch(function(error) {
-							console.log("Error listing users:", error);
-						});
-				}
-				// Start listing users from the beginning, 1000 at a time.
-				console.log(listAllUsers());
-			}
-		}
+    firestore() {
+      return {
+        users: db.collection('users')
+      }
+    },
 	}
 </script>
 
 <style scoped="true">
+  
 	.featured {
 		height: 40vh;
 		width: 100%;
@@ -58,4 +47,41 @@
 		padding-top: 20px;
 		color: #FEFFFE;
 	}
+  
+  img {
+    border-radius: 100%;
+    height: 250px;
+    border: solid #909090;
+  }
+  
+  .container {
+    width: 75%;
+    margin: auto;
+  }
+  
+  article {
+    display: inline-block;
+    margin: 15px 30px;
+    padding: 5px;
+    border-bottom: solid 4px #fefffe;
+  }
+  
+  article:hover {
+    border-bottom: solid 4px #52489C;
+  }
+  
+  article h1 {
+    margin: 5px 0px;
+  }
+  
+  article h3 {
+    color: #5b4c64;
+    margin: 5px 0px;
+    font-size: 1em;
+  }
+  
+  i {
+    font-size: 0.9em;
+  }
+  
 </style>

@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import firebase from 'firebase'
+import 'firebase/firestore'
+import VueFire from 'vuefire'
 
 Vue.config.productionTip = false
 
@@ -14,10 +16,20 @@ var config = {
     databaseURL: "https://fashion-app-992cd.firebaseio.com",
     projectId: "fashion-app-992cd",
     storageBucket: "fashion-app-992cd.appspot.com",
-    messagingSenderId: "577249385254"
+    messagingSenderId: "577249385254",
 };
 
+const settings = {
+  timestampsInSnapshots: true
+}
+
+Vue.use(VueFire)
+
 firebase.initializeApp(config)
+const firestore = firebase.firestore();
+firestore.settings(settings);
+export const db = firestore
+
 firebase.auth().onAuthStateChanged(function(user) {
 	
 	if (!app) {
