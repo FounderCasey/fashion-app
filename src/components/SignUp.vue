@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="signup">
-      <h3>Sign Up for Fashion App</h3>
+      <h3>Sign Up for OutfitJar</h3>
       <input type="text" v-model="name" placeholder="Display Name"><br>
       <input type="text" v-model="email" placeholder="Email"><br>
       <input type="password" v-model="password" placeholder="Password"><br>
@@ -61,6 +61,7 @@
   h3 {
     padding: 15px 0px;
     margin: 0;
+		font-size: 1.8rem;
   }
   
 	input {

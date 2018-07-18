@@ -31,7 +31,7 @@
 					},
 					{
 						id: 3,
-						text: 'Fashion App',
+						text: 'OutfitJar',
 						page: '/home'
 					}
 				]
