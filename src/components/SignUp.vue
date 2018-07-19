@@ -3,9 +3,11 @@
     <div class="signup">
       <h3>Sign Up for OutfitJar</h3>
       <input type="text" v-model="name" placeholder="Display Name"><br>
+      <input type="text" v-model="location" placeholder="Location"><br>
+      <input type="text" v-model="followers" placeholder="Number of followers"><br>
       <input type="text" v-model="email" placeholder="Email"><br>
       <input type="password" v-model="password" placeholder="Password"><br>
-      <button v-on:click="signUp">Sign Up</button>
+      <button v-on:click="addUser(); signUp();">Sign Up</button>
       <p>Already have an account? <router-link to="/login">Sign In!</router-link></p>
     </div>
   </div>
@@ -13,12 +15,15 @@
 
 <script>
 	import firebase from 'firebase'
-	
+	import { db } from '../main'
+  
 	export default {
 		name: 'signup',
 		data: function() {
 			return {
 				name: '',
+        location: '',
+        followers: '',
 				email: '',
 				password: ''
 			}
@@ -37,7 +42,15 @@
 						alert("Yikes, " + err.message)
 					}
 				);
-			}
+			},
+      addUser: function() {
+        db.collection("users").doc(this.email).set({
+          name: this.name,
+          followers: this.followers,
+          location: this.location,
+          image: "https://i.imgur.com/5wbDlUQ.png"
+        })
+      }
 		}
 	}
 </script>

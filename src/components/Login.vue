@@ -13,7 +13,8 @@
 		</div>
 		<div class="info-container" id="info">
 			<h3> Info </h3>
-			<a href="#">Top</a>
+      <h4>OutfitJar connects Brands and Ambassadors.</h4>
+			<a href="#" id="login-link">OutfitJar</a>
 		</div>
 	</div>
 </template>
@@ -123,6 +124,11 @@
 		outline: none;
 		width: 150px;
 		margin-bottom: 15px;
+    border-radius: 10px;
 	}
+  
+  #login-link {
+    color: #52489C;
+  }
 	
 </style>

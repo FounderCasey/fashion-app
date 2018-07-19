@@ -36,6 +36,6 @@
 	}
 </script>
 
-<style  scoped="true">
+<style scoped="true">
 
 </style>

@@ -57,6 +57,23 @@
   .container {
     width: 75%;
     margin: auto;
+    height: 54.9vh;
+    overflow-y: scroll;
+  }
+  
+  .container::-webkit-scrollbar {
+    width: 0.4em;
+  }
+ 
+  .container::-webkit-scrollbar-track {
+    background-color: #e8e8e8;
+  }
+ 
+  .container::-webkit-scrollbar-thumb {
+    background-color: #52489C;
+    outline: 1px solid slategrey;
+    border-radius: 5px;
+    padding: 15px 0px;
   }
   
   article {
