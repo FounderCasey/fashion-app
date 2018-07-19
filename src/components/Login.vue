@@ -20,7 +20,7 @@
 					<i class="fas fa-search"></i>
 					<p>Search for Brands</p>
 				</div>
-				<div class="icon">
+				<div class="icon icon-middle">
 					<i class="fas fa-comments"></i>
 					<p>Talk to Brands</p>
 				</div>
@@ -28,8 +28,8 @@
 					<i class="fas fa-user-plus"></i>
 					<p>Gain Followers</p>
 				</div>
-				<br/>
-				<a href="#" id="login-link"><i class="fas fa-angle-up"></i></a>
+				<br>
+				<a href="#" id="login-link">Login</a>
 			</div>
 		</div>
 	</div>
@@ -83,6 +83,11 @@
     margin: 0;
 		font-size: 1.8rem;
   }
+	
+	h4 {
+		font-size: 1.3rem;
+		margin: 5px 0px;
+	}
   
 	input {
 		width: 300px;
@@ -141,6 +146,11 @@
   
   #login-link {
     color: #52489C;
+		font-size: 2em;
+	}
+	
+	#login-link:hover {
+		color: #332979;
 	}
 	
 	.wrapper {
@@ -165,11 +175,11 @@
 	
 	.icon {
 		display: inline-block;
-		padding: 5px 25px;
+		padding: 25px 25px;
 	}
 	
-	i {
-		font-size: 2rem;
+	.icon i {
+		font-size: 1.5em;
 	}
 	
 	.icon p {
