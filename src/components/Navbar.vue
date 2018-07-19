@@ -42,7 +42,7 @@
 
 <style  scoped="true">
 	nav {
-		width: 100%;
+    width: 100%; /* Full width */
 	}
 	
 	ul {
@@ -52,6 +52,7 @@
     overflow: hidden;
     background-color: #FEFFFE;
 		font-size: 1.2em;
+		box-shadow: 0px 2px 1px rgba(168, 168, 168, 0.28);
 	}
 	
 	.link {

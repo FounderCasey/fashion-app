@@ -25,7 +25,8 @@
         location: '',
         followers: '',
 				email: '',
-				password: ''
+				password: '',
+				selectedFile: null
 			}
 		},
 		methods: {

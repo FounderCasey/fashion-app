@@ -12,9 +12,25 @@
 			</div>
 		</div>
 		<div class="info-container" id="info">
-			<h3> Info </h3>
-      <h4>OutfitJar connects Brands and Ambassadors.</h4>
-			<a href="#" id="login-link">OutfitJar</a>
+			<div class="wrapper">
+				<h3>OutfitJar</h3>
+				<h4>We connect Brands and Ambassadors.</h4>
+				<p>This is where OutfitJar comes to the rescue. We list brands that are looking for <em>you</em>. It's simple enough. Sign up and start browsing brands.</p>
+				<div class="icon">
+					<i class="fas fa-search"></i>
+					<p>Search for Brands</p>
+				</div>
+				<div class="icon">
+					<i class="fas fa-comments"></i>
+					<p>Talk to Brands</p>
+				</div>
+				<div class="icon">
+					<i class="fas fa-user-plus"></i>
+					<p>Gain Followers</p>
+				</div>
+				<br/>
+				<a href="#" id="login-link"><i class="fas fa-angle-up"></i></a>
+			</div>
 		</div>
 	</div>
 </template>
@@ -113,10 +129,6 @@
 		color: #5f38cb;
 	}
 	
-	.info-container {
-		height: 100vh;
-	}
-	
 	hr {
 		height: 2px;
 		background-color: #fefffe;
@@ -129,6 +141,69 @@
   
   #login-link {
     color: #52489C;
-  }
+	}
+	
+	.wrapper {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: #fefffe;
+		border-radius: 10px;
+		padding: 25px;
+		box-shadow: 3px 3px 10px rgba(64, 64, 64, 0.2);
+		animation: shadowbounce 3s;
+		-webkit-animation: shadowbounce 3s;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+	}
+	
+	.wrapper h3 {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.icon {
+		display: inline-block;
+		padding: 5px 25px;
+	}
+	
+	i {
+		font-size: 2rem;
+	}
+	
+	.icon p {
+		font-weight: bolder;
+	}
+	
+	@keyframes shadowbounce {
+		0%   { box-shadow: 3px 3px 10px rgba(64, 64, 64, 0.2); }
+		50%  { box-shadow: 5px 10px 10px rgba(64, 64, 64, 0.2); }
+		100%  { box-shadow: 3px 3px 10px rgba(64, 64, 64, 0.2); }
+	}
+	
+	.info-container {
+		animation: colorchange 10s;
+		-webkit-animation: colorchange 10s;
+		animation-iteration-count: infinite;
+		height: 100vh;
+		position: relative;
+	}
+
+	@keyframes colorchange {
+		0%   { background: #c7c3e5; }
+		25%  { background: #aaa2e5; }
+		50%  { background: #b79fe3; }
+		75%  { background: #ad9ec9; }
+		100% { background: #c7c3e5; }
+	}
+
+	@-webkit-keyframes colorchange {
+		0%   { background: #c7c3e5; }
+		25%  { background: #aaa2e5; }
+		50%  { background: #b79fe3; }
+		75%  { background: #ad9ec9; }
+		100% { background: #c7c3e5; }
+	}
 	
 </style>
