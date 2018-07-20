@@ -6,7 +6,7 @@
 		<div class="container">
       <h3>Ambassadors</h3>
 			<article v-for="(user, idx) in users" :key="idx">
-        <img :src="user.image">
+				<div class="image-cropper"><img :src="user.image"></div>
         <h1>{{ user.name }}</h1>
         <h3>{{ user.followers }} <i class="fas fa-users"></i></h3>
         <h3>{{ user.location }}</h3>
@@ -47,12 +47,22 @@
 		padding-top: 20px;
 		color: #FEFFFE;
 	}
-  
-  img {
-    border-radius: 100%;
+	
+	.image-cropper {
+    width: 250px;
     height: 250px;
-    border: solid #909090;
-  }
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+		border: solid 4px #fefffe;
+	}
+
+	img {
+		display: inline;
+		margin: auto;
+		height: 130%;
+		width: auto;
+	}
   
   .container {
     width: 75%;
@@ -69,6 +79,10 @@
   article:hover {
     border-bottom: solid 4px #52489C;
   }
+	
+	article:hover .image-cropper {
+		border: solid 4px #52489C;
+	}
   
   article h1 {
     margin: 5px 0px;

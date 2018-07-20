@@ -15,7 +15,7 @@
 			<div class="wrapper">
 				<h3>OutfitJar</h3>
 				<h4>We connect Brands and Ambassadors.</h4>
-				<p>This is where OutfitJar comes to the rescue. We list brands that are looking for <em>you</em>. It's simple enough. Sign up and start browsing brands.</p>
+				<p id="info-p">This is where OutfitJar comes to the rescue. We list brands that are looking for <em>you</em>. It's simple enough. Sign up and start browsing brands.</p>
 				<div class="icon">
 					<i class="fas fa-search"></i>
 					<p>Search for Brands</p>
@@ -171,6 +171,10 @@
 	.wrapper h3 {
 		margin: 0;
 		padding: 0;
+	}
+	
+	#info-p {
+		padding: 0px 40px;
 	}
 	
 	.icon {
