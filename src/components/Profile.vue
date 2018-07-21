@@ -2,7 +2,7 @@
 	<div>
 		<div class="hero">
 			<div class="card">
-				<img :src="user.image" v-on:click="changeImage" id="profileImage">
+				<div class="image-cropper"><img :src="user.image" v-on:click="changeImage" id="profileImage"></div>
 				<input id="fileUpload" type="file" hidden>
 				<h1>{{ user.name }}</h1>
 				<h3>{{ user.location }}</h3>
@@ -90,10 +90,20 @@
 		transform: translate(-50%, -50%);
 	}
 	
+	.card .image-cropper {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+		border: solid 4px #fefffe;
+	}
+
 	.card img {
-		height: 170px;
-		border-radius: 100%;
-		border: solid 2px #909090;
+		display: inline;
+		margin: auto;
+		height: 150%;
+		width: auto;
 	}
 	
 	.card h1, h3 {
