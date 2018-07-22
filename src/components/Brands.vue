@@ -62,6 +62,25 @@
 		transform: translate(-50%, -50%);
 		width: 100%;
 	}
+  
+  .featured-brands::-webkit-scrollbar {
+    height: 5px;
+    border-radius: 5px;
+  }
+
+  .featured-brands::-webkit-scrollbar-track {
+    background: #FEFFFE;
+    border-radius: 5px;
+  }
+
+  .featured-brands::-webkit-scrollbar-thumb {
+    background: #52489C; 
+    border-radius: 5px;
+  }
+
+  .featured-brands::-webkit-scrollbar-thumb:hover {
+    background: #6a5bd6; 
+  }
 
 	img {
 		border-radius: 50%;
