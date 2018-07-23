@@ -1,7 +1,14 @@
 <template>
 	<div>
 		<div class="featured">
-			<h2>Featured Ambassadors</h2>
+			<div class="centered-content">
+				<h2>Featured Ambassadors</h2>
+					<div class="featured-users">
+						<article v-for="(user, idx) in users" :key="idx" class="featured-article">
+							<img :src="user.image" class="featured-img">
+						</article>
+					</div>
+			</div>
 		</div>
 		<div class="container">
       <h3>Ambassadors</h3>
@@ -37,14 +44,14 @@
 <style scoped="true">
   
 	.featured {
-		height: 40vh;
+		height: 300px;
 		width: 100%;
 		background-color: #8179B7;
+		position: relative;
 	}
 	
 	h2 {
 		margin: 0;
-		padding-top: 20px;
 		color: #FEFFFE;
 	}
 	
@@ -63,6 +70,68 @@
 		height: 130%;
 		width: auto;
 	}
+	
+	/****    Featured    ****/
+	
+	.centered-content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+	}
+	
+	.featured-img {
+		border-radius: 50%;
+		border: solid 4px #8179B7;
+		height: 200px;
+	}
+	
+	.featured-img:hover {
+		border: solid 4px #FEFFFE;
+	}
+	
+	.featured-users {
+		width: 75%;
+		height: 250px;
+		margin: auto;
+		overflow-x: scroll;
+  	overflow-y: hidden;
+  	white-space: nowrap;
+	}
+	
+  .featured-users::-webkit-scrollbar {
+    height: 5px;
+    border-radius: 5px;
+		margin: 0;
+  }
+
+  .featured-users::-webkit-scrollbar-track {
+    background: #8179B7;
+    border-radius: 5px;
+  }
+
+  .featured-users::-webkit-scrollbar-thumb {
+    background: #52489C; 
+    border-radius: 5px;
+  }
+
+  .featured-users::-webkit-scrollbar-thumb:hover {
+    background: #FEFFFE; 
+  }
+  
+	.featured-article {
+		display: inline-block;
+    margin: 15px 30px;
+    padding: 5px;
+    border-bottom: solid 4px #8179B7;
+	}
+	
+	.featured-article:hover {
+		border-bottom: solid 4px #8179B7;
+	}
+	
+	/****   Normal   ****/
   
   .container {
     width: 75%;

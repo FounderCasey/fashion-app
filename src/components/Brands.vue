@@ -43,7 +43,7 @@
 <style scoped="true">
 	
 	.featured {
-		height: 40vh;
+		height: 300px;
 		width: 100%;
 		background-color: #8179B7;
 		position: relative;
@@ -51,36 +51,8 @@
 	
 	h2 {
 		margin: 0;
-		padding-top: 10px;
 		color: #FEFFFE;
 	}
-	
-	.centered-content {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 100%;
-	}
-  
-  .featured-brands::-webkit-scrollbar {
-    height: 5px;
-    border-radius: 5px;
-  }
-
-  .featured-brands::-webkit-scrollbar-track {
-    background: #FEFFFE;
-    border-radius: 5px;
-  }
-
-  .featured-brands::-webkit-scrollbar-thumb {
-    background: #52489C; 
-    border-radius: 5px;
-  }
-
-  .featured-brands::-webkit-scrollbar-thumb:hover {
-    background: #6a5bd6; 
-  }
 
 	img {
 		border-radius: 50%;
@@ -92,6 +64,16 @@
 		border: solid 4px #52489C;
 	}
 	
+	/****    Featured    ****/
+	
+	.centered-content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+	}
+	
 	.featured-img {
 		border-radius: 50%;
 		border: solid 4px #8179B7;
@@ -101,20 +83,35 @@
 	.featured-img:hover {
 		border: solid 4px #FEFFFE;
 	}
-  
-  .container {
-    width: 75%;
-    margin: auto;
-  }
 	
 	.featured-brands {
 		width: 75%;
-		height: 300px;;
+		height: 250px;
 		margin: auto;
 		overflow-x: scroll;
   	overflow-y: hidden;
   	white-space: nowrap;
 	}
+	
+  .featured-brands::-webkit-scrollbar {
+    height: 5px;
+    border-radius: 5px;
+		margin: 0;
+  }
+
+  .featured-brands::-webkit-scrollbar-track {
+    background: #8179B7;
+    border-radius: 5px;
+  }
+
+  .featured-brands::-webkit-scrollbar-thumb {
+    background: #52489C; 
+    border-radius: 5px;
+  }
+
+  .featured-brands::-webkit-scrollbar-thumb:hover {
+    background: #6a5bd6; 
+  }
   
 	.featured-article {
 		display: inline-block;
@@ -126,6 +123,13 @@
 	.featured-article:hover {
 		border-bottom: solid 4px #8179B7;
 	}
+	
+	/****    Normal    ****/
+	
+	.container {
+    width: 75%;
+    margin: auto;
+  }
 	
   article {
     display: inline-block;
