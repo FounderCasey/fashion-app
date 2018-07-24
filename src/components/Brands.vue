@@ -76,12 +76,7 @@
 	
 	.featured-img {
 		border-radius: 50%;
-		border: solid 4px #8179B7;
 		height: 200px;
-	}
-	
-	.featured-img:hover {
-		border: solid 4px #FEFFFE;
 	}
 	
 	.featured-brands {
@@ -121,7 +116,7 @@
 	}
 	
 	.featured-article:hover {
-		border-bottom: solid 4px #8179B7;
+		border-bottom: solid 4px #fefffe;
 	}
 	
 	/****    Normal    ****/

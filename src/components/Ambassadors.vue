@@ -5,7 +5,9 @@
 				<h2>Featured Ambassadors</h2>
 					<div class="featured-users">
 						<article v-for="(user, idx) in users" :key="idx" class="featured-article">
-							<img :src="user.image" class="featured-img">
+							<div id="image-wrapper"><img :src="user.image" class="featured-img">
+								<div class="hover-text">{{user.name}}</div>
+							</div>
 						</article>
 					</div>
 			</div>
@@ -125,10 +127,32 @@
     margin: 15px 30px;
     padding: 5px;
     border-bottom: solid 4px #8179B7;
+		position: relative;
+		border-radius: 100%;
 	}
 	
 	.featured-article:hover {
 		border-bottom: solid 4px #8179B7;
+	}
+	
+	.hover-text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transition: .5s ease;
+		opacity: 0;
+		text-align: center;
+		font-size: 2em;
+		font-weight: bold;
+	}
+	
+	.featured-article:hover .featured-img {
+		opacity: 0.2;
+	}
+	
+	.featured-article:hover .hover-text {
+		opacity: 1;
 	}
 	
 	/****   Normal   ****/
