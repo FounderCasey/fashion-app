@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="signup">
-      <h3>Sign Up for OutfitJar</h3>
+      <h3>Sign Up for Brandfli</h3>
       <input type="text" v-model="name" placeholder="Display Name"><br>
       <input type="text" v-model="location" placeholder="Location"><br>
       <input type="text" v-model="followers" placeholder="Number of followers"><br>
@@ -41,7 +41,8 @@
 							name: this.name,
 							followers: this.followers,
 							location: this.location,
-							image: "https://i.imgur.com/5wbDlUQ.png"
+							image: "https://i.imgur.com/5wbDlUQ.png",
+							premium: false
 						})
 						this.$router.replace('home')
 					},

@@ -31,7 +31,7 @@
 					},
 					{
 						id: 3,
-						text: 'OutfitJar',
+						text: 'Brandfli',
 						page: '/home'
 					}
 				]

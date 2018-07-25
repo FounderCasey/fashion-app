@@ -4,9 +4,13 @@
 			<div class="centered-content">
 				<h2>Featured Ambassadors</h2>
 					<div class="featured-users">
-						<article v-for="(user, idx) in users" :key="idx" class="featured-article">
+						<article v-for="(user, idx) in premium" :key="idx" class="featured-article">
 							<div id="image-wrapper"><img :src="user.image" class="featured-img">
-								<div class="hover-text">{{user.name}}</div>
+								<div class="hover-text">
+									<h3>{{user.name}}</h3>
+									<h4>{{user.followers}} <i class="fas fa-users"></i></h4>
+									<h4>{{user.location}}</h4>
+								</div>
 							</div>
 						</article>
 					</div>
@@ -14,7 +18,7 @@
 		</div>
 		<div class="container">
       <h3>Ambassadors</h3>
-			<article v-for="(user, idx) in users" :key="idx">
+			<article v-for="(user, idx) in users" :key="idx" class="article">
 				<div class="image-cropper"><img :src="user.image"></div>
         <h1>{{ user.name }}</h1>
         <h3>{{ user.followers }} <i class="fas fa-users"></i></h3>
@@ -32,12 +36,14 @@
 		name: 'ambassadors',
 		data () {
 			return {
-				users: []
+				users: [],
+				premium: []
 			}
 		},
     firestore() {
       return {
-        users: db.collection('users')
+        users: db.collection('users'),
+				premium: db.collection('users').where("premium", "==", true)
       }
     },
 	}
@@ -87,10 +93,11 @@
 		border-radius: 50%;
 		border: solid 4px #8179B7;
 		height: 200px;
+		transition: 0.5s ease;
 	}
 	
 	.featured-img:hover {
-		border: solid 4px #FEFFFE;
+		border: solid 4px #8179B7;
 	}
 	
 	.featured-users {
@@ -125,14 +132,9 @@
 	.featured-article {
 		display: inline-block;
     margin: 15px 30px;
-    padding: 5px;
-    border-bottom: solid 4px #8179B7;
+		padding: 5px;
 		position: relative;
 		border-radius: 100%;
-	}
-	
-	.featured-article:hover {
-		border-bottom: solid 4px #8179B7;
 	}
 	
 	.hover-text {
@@ -143,8 +145,19 @@
 		transition: .5s ease;
 		opacity: 0;
 		text-align: center;
-		font-size: 2em;
+		font-size: 1.75em;
 		font-weight: bold;
+		color: #FEFFFE;
+	}
+	
+	.hover-text h3 {
+		font-size: 1em;
+		margin: 0px;
+	}
+	
+	.hover-text h4 {
+		font-size: 0.5em;
+		margin: 0px;
 	}
 	
 	.featured-article:hover .featured-img {
@@ -162,26 +175,26 @@
     margin: auto;
   }
   
-  article {
+  .article {
     display: inline-block;
     margin: 15px 30px;
     padding: 5px;
     border-bottom: solid 4px #fefffe;
   }
   
-  article:hover {
+  .article:hover {
     border-bottom: solid 4px #52489C;
   }
 	
-	article:hover .image-cropper {
+	.article:hover .image-cropper {
 		border: solid 4px #52489C;
 	}
   
-  article h1 {
+  .article h1 {
     margin: 5px 0px;
   }
   
-  article h3 {
+  .article h3 {
     color: #5b4c64;
     margin: 5px 0px;
     font-size: 1em;

@@ -2,20 +2,20 @@
 	<div>
 		<div class="container">
 			<div class="login">
-				<h3>Sign in to OutfitJar</h3>
+				<h3>Sign in to Brandfli</h3>
 				<input type="text" v-model="email" placeholder="Email"><br>
 				<input type="password" v-model="password" placeholder="Password"><br>
 				<button v-on:click="signIn">Login</button>
 				<p>Don't have an account?<router-link to="/signup"> Create one!</router-link></p>
 				<hr/>
-				<a href="#info">What is OutfitJar?</a>
+				<a href="#info">What is Brandfli?</a>
 			</div>
 		</div>
 		<div class="info-container" id="info">
 			<div class="wrapper">
-				<h3>OutfitJar</h3>
+				<h3>Brandfli</h3>
 				<h4>We connect Brands and Ambassadors.</h4>
-				<p id="info-p">This is where OutfitJar comes to the rescue. We list brands that are looking for <em>you</em>. It's simple enough. Sign up and start browsing brands.</p>
+				<p id="info-p">This is where Brandfli comes to the rescue. We list brands that are looking for <em>you</em>. It's simple enough. Sign up and start browsing brands.</p>
 				<div class="icon">
 					<i class="fas fa-search"></i>
 					<p>Search for Brands</p>
