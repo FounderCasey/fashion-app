@@ -7,9 +7,9 @@
 						<article v-for="(user, idx) in premium" :key="idx" class="featured-article" v-on:click='interest(user)'>
 							<img :src="user.image" class="featured-img">
 							<div class="hover-text">
-								<h3>{{user.name}}</h3>
-								<h4>{{user.followers}} <i class="fas fa-users"></i></h4>
-								<h4>{{user.location}}</h4>
+								<h3>{{ user.name }}</h3>
+								<h4>{{ user.followers }} <i class="fas fa-users"></i></h4>
+								<h4>{{ user.location }}</h4>
 							</div>
 						</article>
 					</div>
@@ -24,6 +24,15 @@
         <h3>{{ user.location }}</h3>
       </article>
 		</div>
+    <div class="lightbox" v-show="show" v-bind:class='{active: isActive}'>
+      <i class="fas fa-times" v-on:click="show = !show"></i>
+      <img :src="user.image" class="featured-img">
+      <h3>{{ user.name }}</h3>
+      <h4>{{ user.followers }} <i class="fas fa-users"></i></h4>
+      <h4>{{ user.location }}</h4>
+      <p>{{ user.about }}</p>
+      <button class="connect-btn" @click="show = !show">Show Interest</button>
+    </div>
 	</div>
 </template>
 
@@ -36,7 +45,10 @@
 		data () {
 			return {
 				users: [],
-				premium: []
+				premium: [],
+        user: [],
+        show: false,
+        isActive: false
 			}
 		},
     firestore() {
@@ -46,8 +58,10 @@
       }
     },
 		methods: {
-			interest: function(user) {
-				console.log(user)
+			interest: function(selectedUser) {
+        this.show = !this.show
+				console.log(selectedUser)
+        this.user = selectedUser
 			}
 		}
 	}
@@ -202,5 +216,68 @@
   i {
     font-size: 0.9em;
   }
+  
+  /**** Lightbox ****/
+  
+	.lightbox {
+		width: 500px;
+		height: auto;
+    padding: 45px 15px;
+		background: #FEFFFE;
+		color: #52489C;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 5px;
+    box-shadow: 1px 1px 20px rgba(72, 72, 72, 0.88);
+	}
+  
+  .lightbox h3 {
+		font-size: 2em;
+		margin: 0px;
+	}
+	
+	.lightbox h4 {
+		font-size: 1em;
+		margin: 5px 0px;
+	}
+  
+  .lightbox p {
+		font-size: 1em;
+		margin: 10px 0px;
+	}
+  
+  .fa-times {
+    font-size: 1.6em;
+    color: #cb4341;
+    position: absolute;
+    top: -6%;
+    left: -5%;
+    transition: 1s;
+  }
+  
+  .fa-times:hover {
+    font-size: 2em;
+    transform: rotate(90deg);
+  }
+  
+  .connect-btn {
+		width: 250px;
+		height: 45px;
+		font-size: 1.2rem;
+		border: none;
+		outline: none;
+		background-color: #50bc54;
+		border-radius: 5px;
+		margin: 20px 0px 0px;
+		color: #fefffe;
+	}
+	
+	.connect-btn:hover {
+		background-color: #52489C;
+    color: #ffffff;
+		cursor: pointer;
+	}
   
 </style>

@@ -156,6 +156,11 @@
 		border-radius: 5px;
 		color: #333;
 	}
+  
+  #aboutme {
+    width: 60%;
+    margin: auto;
+  }
 	
 	button {
 		width: 250px;
