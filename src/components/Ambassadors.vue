@@ -4,7 +4,7 @@
 			<div class="centered-content">
 				<h2>Featured Ambassadors</h2>
 					<div class="featured-users">
-						<article v-for="(user, idx) in premium" :key="idx" class="featured-article">
+						<article v-for="(user, idx) in premium" :key="idx" class="featured-article" v-on:click='interest(user)'>
 							<img :src="user.image" class="featured-img">
 							<div class="hover-text">
 								<h3>{{user.name}}</h3>
@@ -17,7 +17,7 @@
 		</div>
 		<div class="container">
       <h3>Ambassadors</h3>
-			<article v-for="(user, idx) in users" :key="idx" class="article">
+			<article v-for="(user, idx) in users" :key="idx" class="article" v-on:click='interest(user)'>
 				<img :src="user.image">
         <h1>{{ user.name }}</h1>
         <h3>{{ user.followers }} <i class="fas fa-users"></i></h3>
@@ -45,6 +45,11 @@
 				premium: db.collection('users').where("premium", "==", true)
       }
     },
+		methods: {
+			interest: function(user) {
+				console.log(user)
+			}
+		}
 	}
 </script>
 

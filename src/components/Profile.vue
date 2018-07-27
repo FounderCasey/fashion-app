@@ -20,7 +20,6 @@
 				:noSquare="true"
 				img-format="png">
 			</my-upload>
-			
 		</div>
 		<button v-on:click="logout">Logout</button>
 		<div class="lightbox" v-show="showLb">

@@ -36,7 +36,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 		app = new Vue({
 			el: '#app',
 			router,
-			components: { App },
+			components: { 
+				App
+			},
 			template: '<App/>'
 		})
 	}
