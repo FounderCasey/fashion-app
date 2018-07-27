@@ -2,6 +2,7 @@
 	<div>
 		<div class="container">
 			<div class="login">
+				<img src="../assets/logo-white.png">
 				<h3>Sign in to Brandfli</h3>
 				<input type="text" v-model="email" placeholder="Email"><br>
 				<input type="password" v-model="password" placeholder="Password"><br>
@@ -13,9 +14,10 @@
 		</div>
 		<div class="info-container" id="info">
 			<div class="wrapper">
-				<h3>Brandfli</h3>
+				<img src="../assets/logo-purple.png">
+				<h3 id="info-title">Brandfli</h3>
 				<h4>We connect Brands and Ambassadors.</h4>
-				<p id="info-p">This is where Brandfli comes to the rescue. We list brands that are looking for <em>you</em>. It's simple enough. Sign up and start browsing brands.</p>
+				<p id="info-p">This is where Brandfli takes over. We list brands that are looking for <em>you</em>. You choose the brand to grow with. Sign up and start browsing brands.</p>
 				<div class="icon">
 					<i class="fas fa-search"></i>
 					<p>Search for Brands</p>
@@ -65,7 +67,7 @@
   
   .container {
     background: #8179B7;
-    height: 94.9vh;
+    height: 91.2vh;
     color: #FEFFFE;
     position: relative;
     overflow: hidden;
@@ -102,6 +104,10 @@
     color: #333;
 	}
 	
+	img {
+		height: 75px;
+	}
+	
 	input:focus {
 		box-shadow: 0 0 0 2pt rgba(149, 96, 211, 0.44);
 	}
@@ -116,6 +122,7 @@
 		border-radius: 5px;
 		margin: 15px 0px 0px;
 		color: #fbfbfb;
+		transition: 0.25s;
 	}
 	
 	button:hover {
@@ -177,17 +184,35 @@
 		padding: 0px 40px;
 	}
 	
+	#info-title {
+		color: #52489C;
+	}
+	
 	.icon {
 		display: inline-block;
-		padding: 25px 25px;
+		padding: 15px 25px;
 	}
 	
 	.icon i {
 		font-size: 1.5em;
+		transition: 1s;
 	}
 	
 	.icon p {
 		font-weight: bolder;
+		transition: 1s;
+	}
+	
+	.icon:hover i {
+		color: #52489c;
+		transition: 1s;
+		transform: rotate(10deg);
+	}
+	
+	.icon:hover p {
+		font-weight: bolder;
+		color: #52489c;
+		transition: 1s;
 	}
 	
 	@keyframes shadowbounce {

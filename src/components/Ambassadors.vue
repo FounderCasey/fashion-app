@@ -5,12 +5,11 @@
 				<h2>Featured Ambassadors</h2>
 					<div class="featured-users">
 						<article v-for="(user, idx) in premium" :key="idx" class="featured-article">
-							<div id="image-wrapper"><img :src="user.image" class="featured-img">
-								<div class="hover-text">
-									<h3>{{user.name}}</h3>
-									<h4>{{user.followers}} <i class="fas fa-users"></i></h4>
-									<h4>{{user.location}}</h4>
-								</div>
+							<img :src="user.image" class="featured-img">
+							<div class="hover-text">
+								<h3>{{user.name}}</h3>
+								<h4>{{user.followers}} <i class="fas fa-users"></i></h4>
+								<h4>{{user.location}}</h4>
 							</div>
 						</article>
 					</div>
@@ -19,7 +18,7 @@
 		<div class="container">
       <h3>Ambassadors</h3>
 			<article v-for="(user, idx) in users" :key="idx" class="article">
-				<div class="image-cropper"><img :src="user.image"></div>
+				<img :src="user.image">
         <h1>{{ user.name }}</h1>
         <h3>{{ user.followers }} <i class="fas fa-users"></i></h3>
         <h3>{{ user.location }}</h3>
@@ -62,21 +61,14 @@
 		margin: 0;
 		color: #FEFFFE;
 	}
-	
-	.image-cropper {
-    width: 250px;
+
+	img {
+		width: 250px;
     height: 250px;
     position: relative;
     overflow: hidden;
-    border-radius: 50%;
+    border-radius: 100%;
 		border: solid 4px #fefffe;
-	}
-
-	img {
-		display: inline;
-		margin: auto;
-		height: 130%;
-		width: auto;
 	}
 	
 	/****    Featured    ****/
@@ -90,14 +82,16 @@
 	}
 	
 	.featured-img {
-		border-radius: 50%;
-		border: solid 4px #8179B7;
-		height: 200px;
-		transition: 0.5s ease;
+		width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 100%;
+		border: solid 4px #fefffe;
 	}
 	
 	.featured-img:hover {
-		border: solid 4px #8179B7;
+		border: solid 4px #FEFFFE;
 	}
 	
 	.featured-users {
@@ -186,7 +180,7 @@
     border-bottom: solid 4px #52489C;
   }
 	
-	.article:hover .image-cropper {
+	.article:hover img {
 		border: solid 4px #52489C;
 	}
   

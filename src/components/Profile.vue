@@ -2,25 +2,35 @@
 	<div>
 		<div class="hero">
 			<div class="card">
-				<div class="image-cropper"><img :src="user.image" v-on:click="changeImage" id="profileImage"></div>
-				<input id="fileUpload" type="file" hidden>
+				<img :src="user.image" v-on:click="showUpload" id="profileImage">
 				<h1>{{ user.name }}</h1>
 				<h3>{{ user.location }}</h3>
 			</div>
 		</div>
 		<div class="container">
-			<h3 v-on:click="showLightbox = !showLightbox">About Me</h3>
-			<p id="aboutme">This is where your about me information will show up. Feel free to write about yourself and what you are looking for. Brands will read this.<br><em>To edit this, click 'About Me' above.</em></p>
+			<h3 v-on:click="showLb = !showLb">About Me</h3>
+			<p id="aboutme">{{ user.about || "This is where your about me information will show up. Feel free to write about yourself and what you are looking for. Brands will read this. To edit this, click 'About Me' above." }}</p>
+			
+			<my-upload field="img"
+				langType="en"
+				@crop-success="cropSuccess"
+				v-model="showMU"
+				:width="300"
+				:height="300"
+				:noSquare="true"
+				img-format="png">
+			</my-upload>
+			
 		</div>
 		<button v-on:click="logout">Logout</button>
-		<div class="lightbox" v-show="showLightbox">
+		<div class="lightbox" v-show="showLb">
 			<h2>Editing About Me</h2>
 			<form>
 				<textarea placeholder="Tell us about you..." id="textarea"></textarea>
 				<br>
 				<button v-on:click="changeAboutMe">Save</button>
 				<br>
-				<button id="cancel-btn" v-on:click="showLightbox = !showLightbox">Cancel</button>
+				<button id="cancel-btn" v-on:click="showLb = !showLb">Cancel</button>
 			</form>
 		</div>
 	</div>
@@ -29,15 +39,20 @@
 <script>
 	import firebase from 'firebase'
 	import { db } from '../main'
+	import myUpload from 'vue-image-crop-upload'
 	
 	export default {
 		name: 'profile',
 		data: function() {
 			return {
 				user: [],
-				showLightbox: false,
+				showLb: false,
+				showMU: false,
 				textarea: ''
 			}
+		},
+		components: {
+			'my-upload': myUpload
 		},
 		firestore() {
 			var user = firebase.auth().currentUser
@@ -52,47 +67,36 @@
 					this.$router.replace('login')
 				})
 			},
-			changeImage: function() {
+			showLightbox: function() {
+				this.showLb = !this.showLb
+			},
+			showUpload: function() {
+				this.showMU = !this.showMU
+			},
+			changeAboutMe: function() {
 				var user = firebase.auth().currentUser
 				var dbRef = db.collection("users").doc(user.uid);
 				
-				document.getElementById("fileUpload").click()
-
-				var fileInput = document.getElementById('fileUpload');
-				var fileDisplayArea = document.getElementById('profileImage');
-
-				fileInput.addEventListener('change', function(e) {
-					var file = fileInput.files[0];
-					var imageType = /image.*/;
-
-					if (file.type.match(imageType)) {
-						var reader = new FileReader();
-
-						reader.onload = function(e) {
-							fileDisplayArea.innerHTML = "";
-
-							var img = document.getElementById('profileImage');
-							img.src = reader.result;
-							
-							return dbRef.update({
-								image: reader.result
-							})
-						}
-						reader.readAsDataURL(file);
-					} else {
-						alert("This file isn't an image, try again.")
-					}
-				});
-			},
-			showLightbox: function() {
-				this.showLightbox = !this.showLightbox
-			},
-			changeAboutMe: function() {
 				this.textarea = document.getElementById('textarea').value
 				document.getElementById('aboutme').innerHTML = this.textarea
-				this.showLightbox = !this.showLightbox
+				
+				this.showLb = !this.showLb
+				
+				return dbRef.update({
+					about: this.textarea
+				})
+			},
+			cropSuccess(imgDataUrl, field) {
+				var user = firebase.auth().currentUser
+				var dbRef = db.collection("users").doc(user.uid);
+				
+				var img = document.getElementById('profileImage');
+				img.src = imgDataUrl;
+				return dbRef.update({
+					image: imgDataUrl
+				})
 			}
-		},
+		}
 	}
 </script>
 
@@ -115,21 +119,14 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 	}
-	
-	.card .image-cropper {
-    width: 200px;
+
+	.card img {
+		width: 200px;
     height: 200px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
 		border: solid 4px #fefffe;
-	}
-
-	.card img {
-		display: inline;
-		margin: auto;
-		height: 150%;
-		width: auto;
 	}
 	
 	.card h1, h3 {
@@ -189,5 +186,4 @@
 	#cancel-btn:hover {
 		color: #cb4341;
 	}
-	
 </style>
