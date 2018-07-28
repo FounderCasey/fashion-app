@@ -17,7 +17,7 @@
 		</div>
 		<div class="container">
       <h3>Ambassadors</h3>
-			<article v-for="(user, idx) in users" :key="idx" class="article" v-on:click='interest(user)'>
+			<article v-for="(user, idx) in users" :key="idx" class="article" v-on:click='interest(user)'>  
 				<img :src="user.image">
         <h1>{{ user.name }}</h1>
         <h3>{{ user.followers }} <i class="fas fa-users"></i></h3>
@@ -197,6 +197,7 @@
   
   .article:hover {
     border-bottom: solid 4px #52489C;
+    cursor: pointer;
   }
 	
 	.article:hover img {
@@ -222,9 +223,9 @@
 	.lightbox {
 		width: 500px;
 		height: auto;
-    padding: 45px 15px;
+    padding: 45px 55px;
 		background: #FEFFFE;
-		color: #52489C;
+		color: #2a2a2a;
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -246,6 +247,7 @@
   .lightbox p {
 		font-size: 1em;
 		margin: 10px 0px;
+    text-align: left;
 	}
   
   .fa-times {

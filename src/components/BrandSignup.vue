@@ -1,16 +1,15 @@
 <template>
   <div class="container">
     <div class="signup">
-      <h3>Sign Up for Brandfli</h3>
-      <input type="text" v-model="name" placeholder="Display Name"><br>
+      <h3>Become a Brand at Brandfli</h3>
+      <input type="text" v-model="name" placeholder="Brand Name"><br>
       <input type="text" v-model="location" placeholder="Location"><br>
-      <input type="text" v-model="followers" placeholder="Number of followers"><br>
       <input type="text" v-model="email" placeholder="Email"><br>
       <input type="password" v-model="password" placeholder="Password"><br>
       <button v-on:click="signUp">Sign Up</button>
       <p>Already have an account? <router-link to="/login">Sign In!</router-link></p>
       <hr>
-      <p>Are you a <router-link to="/brandSignup">brand</router-link>?</p>
+      <p>Not a brand? Sign Up as an <router-link to="/brandSignup">Ambassador</router-link>!</p>
     </div>
   </div>
 </template>
@@ -20,7 +19,7 @@
 	import { db } from '../main'
   
 	export default {
-		name: 'signup',
+		name: 'brandsignup',
 		data: function() {
 			return {
 				name: '',
@@ -39,12 +38,13 @@
 						updateUser.updateProfile({
 							displayName: this.name,
 						})
-						db.collection("users").doc(updateUser.uid).set({
+						db.collection("brands").doc(updateUser.uid).set({
 							name: this.name,
 							followers: this.followers,
 							location: this.location,
 							image: "https://i.imgur.com/VZICx2G.png",
-							premium: false
+              premium: false,
+							brand: true
 						})
 						this.$router.replace('home')
 					},

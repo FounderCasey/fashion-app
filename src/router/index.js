@@ -3,9 +3,10 @@ import Router from 'vue-router'
 import firebase from 'firebase'
 
 import Homepage from '@/components/Homepage'
+import Brands from '@/components/Brands'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
-import Brands from '@/components/Brands'
+import BrandSignup from '@/components/BrandSignup'
 import Ambassadors from '@/components/Ambassadors'
 import Profile from '@/components/Profile'
 
@@ -30,6 +31,11 @@ let router = new Router({
 			path: '/signup',
       name: 'SignUp',
       component: SignUp
+		},
+    {
+			path: '/brandsignup',
+      name: 'BrandSignup',
+      component: BrandSignup
 		},
 		{
       path: '/home',
