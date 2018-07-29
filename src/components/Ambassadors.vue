@@ -17,7 +17,7 @@
 		</div>
 		<div class="container">
       <h3>Ambassadors</h3>
-			<article v-for="(user, idx) in users" :key="idx" class="article" v-on:click='interest(user)'>  
+			<article v-for="(user, idx) in users" :key="idx" class="article" v-on:click='interest(user)'>
 				<img :src="user.image">
         <h1>{{ user.name }}</h1>
         <h3>{{ user.followers }} <i class="fas fa-users"></i></h3>
@@ -59,21 +59,51 @@
     },
 		methods: {
 			interest: function(selectedUser) {
-        this.show = !this.show
-				console.log(selectedUser)
-        this.user = selectedUser
+        if (this.show) {
+          this.user = selectedUser
+        } else {
+          this.user = selectedUser
+          this.show = !this.show
+        }
 			}
 		}
 	}
 </script>
 
+<!--
+
+****************************
+
+-->
+
 <style scoped="true">
+  
+  .box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+  }
+
+  .box .row {
+    border: 1px dotted grey;
+  }
+
+  .box .row.header {
+    flex: 0 1 auto;
+  }
+
+  .box .row.content {
+    flex: 1 1 auto;
+    overflow-y: scroll;
+  }
   
 	.featured {
 		height: 300px;
 		width: 100%;
 		background-color: #8179B7;
 		position: relative;
+    box-shadow: 0px 2px rgba(75, 75, 75, 0.39);
+    z-index: 1;
 	}
 	
 	h2 {
@@ -92,6 +122,7 @@
 	
 	/****    Featured    ****/
 	
+/*
 	.centered-content {
 		position: absolute;
 		top: 50%;
@@ -99,6 +130,7 @@
 		transform: translate(-50%, -50%);
 		width: 100%;
 	}
+*/
 	
 	.featured-img {
 		width: 200px;
@@ -185,7 +217,9 @@
   
   .container {
     width: 75%;
-    margin: auto;
+    margin: 0 auto;
+    height: 62.8vh;
+    overflow-y: scroll;
   }
   
   .article {
@@ -218,9 +252,26 @@
     font-size: 0.9em;
   }
   
+  .container::-webkit-scrollbar {
+    opacity: 0;
+  }
+
+  .container::-webkit-scrollbar-track {
+    opacity: 0;
+  }
+
+  .container::-webkit-scrollbar-thumb {
+    opacity: 0;
+  }
+
+  .container::-webkit-scrollbar-thumb:hover {
+    opacity: 0;
+  }
+  
   /**** Lightbox ****/
   
 	.lightbox {
+/*
 		width: 500px;
 		height: auto;
     padding: 45px 55px;
@@ -232,6 +283,16 @@
 		transform: translate(-50%, -50%);
 		border-radius: 5px;
     box-shadow: 1px 1px 20px rgba(72, 72, 72, 0.88);
+*/
+    width: 100%;
+    background: #c9c9c9;
+    padding: 45px 0px;
+    position: absolute;
+		top: 362px;
+		left: 50%;
+    height: 53.55vh;
+		transform: translate(-50%, 0px);
+    
 	}
   
   .lightbox h3 {
@@ -241,21 +302,22 @@
 	
 	.lightbox h4 {
 		font-size: 1em;
-		margin: 5px 0px;
+		margin: 10px 0px;
 	}
   
   .lightbox p {
 		font-size: 1em;
-		margin: 10px 0px;
+		margin: auto;
     text-align: left;
+    width: 50%;
 	}
   
   .fa-times {
     font-size: 1.6em;
     color: #cb4341;
     position: absolute;
-    top: -6%;
-    left: -5%;
+    top: 10px;
+    left: 10px;
     transition: 1s;
   }
   
