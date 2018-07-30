@@ -15,23 +15,23 @@
 					</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container" v-show="isActive">
       <h3>Ambassadors</h3>
-			<article v-for="(user, idx) in users" :key="idx" class="article" v-on:click='interest(user)'>
+			<article v-for="(user, idx) in users" :key="idx" class="article" v-on:click='interest(user); checkCurrentUser()'>
 				<img :src="user.image">
         <h1>{{ user.name }}</h1>
         <h3>{{ user.followers }} <i class="fas fa-users"></i></h3>
         <h3>{{ user.location }}</h3>
       </article>
 		</div>
-    <div class="lightbox" v-show="show" v-bind:class='{active: isActive}'>
-      <i class="fas fa-times" v-on:click="show = !show"></i>
+    <div class="lightbox" v-show="show">
+      <i class="fas fa-times" v-on:click="show = !show; isActive = !isActive"></i>
       <img :src="user.image" class="featured-img">
       <h3>{{ user.name }}</h3>
       <h4>{{ user.followers }} <i class="fas fa-users"></i></h4>
       <h4>{{ user.location }}</h4>
       <p>{{ user.about }}</p>
-      <button class="connect-btn" @click="show = !show">Show Interest</button>
+      <button class="connect-btn" @click="show = !show; isActive = !isActive" v-show="showBrand">Show Interest</button>
     </div>
 	</div>
 </template>
@@ -44,17 +44,21 @@
 		name: 'ambassadors',
 		data () {
 			return {
-				users: [],
-				premium: [],
-        user: [],
-        show: false,
-        isActive: false
+				users: [], // Displays users
+				premium: [], // Displays premium users
+        user: [], // Checks selected user
+				currUser: [], // Checks if user is a brand
+        show: false, // Shows .lightbox
+        isActive: true, // Shows .container
+				showBrand: false // Shows brand UI
 			}
 		},
     firestore() {
+			var loggedUser = firebase.auth().currentUser
       return {
         users: db.collection('users'),
-				premium: db.collection('users').where("premium", "==", true)
+				premium: db.collection('users').where("premium", "==", true),
+				currUser: db.collection('brands').doc(loggedUser.uid)
       }
     },
 		methods: {
@@ -64,7 +68,15 @@
         } else {
           this.user = selectedUser
           this.show = !this.show
+					this.isActive = !this.isActive
         }
+			},
+			checkCurrentUser: function() {
+				if (this.currUser.brand) {
+					this.showBrand = true
+				} else {
+					this.showBrand = false
+				}
 			}
 		}
 	}
@@ -78,32 +90,11 @@
 
 <style scoped="true">
   
-  .box {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-  }
-
-  .box .row {
-    border: 1px dotted grey;
-  }
-
-  .box .row.header {
-    flex: 0 1 auto;
-  }
-
-  .box .row.content {
-    flex: 1 1 auto;
-    overflow-y: scroll;
-  }
-  
 	.featured {
 		height: 300px;
 		width: 100%;
 		background-color: #8179B7;
 		position: relative;
-    box-shadow: 0px 2px rgba(75, 75, 75, 0.39);
-    z-index: 1;
 	}
 	
 	h2 {
@@ -122,7 +113,6 @@
 	
 	/****    Featured    ****/
 	
-/*
 	.centered-content {
 		position: absolute;
 		top: 50%;
@@ -130,7 +120,6 @@
 		transform: translate(-50%, -50%);
 		width: 100%;
 	}
-*/
 	
 	.featured-img {
 		width: 200px;
@@ -218,8 +207,6 @@
   .container {
     width: 75%;
     margin: 0 auto;
-    height: 62.8vh;
-    overflow-y: scroll;
   }
   
   .article {
@@ -271,28 +258,11 @@
   /**** Lightbox ****/
   
 	.lightbox {
-/*
-		width: 500px;
-		height: auto;
-    padding: 45px 55px;
-		background: #FEFFFE;
-		color: #2a2a2a;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		border-radius: 5px;
-    box-shadow: 1px 1px 20px rgba(72, 72, 72, 0.88);
-*/
     width: 100%;
-    background: #c9c9c9;
+    background: #FEFFFE;
     padding: 45px 0px;
-    position: absolute;
-		top: 362px;
-		left: 50%;
-    height: 53.55vh;
-		transform: translate(-50%, 0px);
-    
+    position: relative;
+		transition: 3s;
 	}
   
   .lightbox h3 {
@@ -311,10 +281,15 @@
     text-align: left;
     width: 50%;
 	}
+	
+	.lightbox img {
+		width: 300px;
+    height: 300px;
+	}
   
   .fa-times {
     font-size: 1.6em;
-    color: #cb4341;
+    color: #404040;
     position: absolute;
     top: 10px;
     left: 10px;
@@ -324,6 +299,7 @@
   .fa-times:hover {
     font-size: 2em;
     transform: rotate(90deg);
+		color: #cb4341;
   }
   
   .connect-btn {
