@@ -56,20 +56,9 @@
 		firestore() {
 			var user = firebase.auth().currentUser
 			
-			var currUser = db.collection('users').doc(user.uid)
-			var currBrand = db.collection('brands').doc(user.uid)
-			
-			console.log(currBrand.id)
-			
-			if (currBrand.id == user.uid) {
-				return {
-					user: db.collection('brands').doc(user.uid),
-				}
-			} else {
-				return {
+			return {
 					user: db.collection('users').doc(user.uid)
 				}
-			}
     },
 		methods: {
 			logout: function() {
@@ -87,46 +76,24 @@
 			changeAboutMe: function() {
 				var user = firebase.auth().currentUser
 				var userRef = db.collection("users").doc(user.uid);
-				var brandRef = db.collection("brands").doc(user.uid);
-				var isBrand = false
 				
 				this.textarea = document.getElementById('textarea').value
 				document.getElementById('aboutme').innerHTML = this.textarea
 				
-				this.showLb = !this.showLb
-				
-				if (isBrand) {
-					return userRef.update({
-						about: this.textarea
-					})
-				} else {
-					return brandRef.update({
-						about: this.textarea
-					})
-				}
-				
-				
+				return userRef.update({
+					about: this.textarea
+				})
 			},
 			cropSuccess(imgDataUrl, field) {
 				var user = firebase.auth().currentUser
 				var userRef = db.collection("users").doc(user.uid);
-				var brandRef = db.collection("brands").doc(user.uid);
-				
-				var isBrand = false;
 				
 				var img = document.getElementById('profileImage');
 				img.src = imgDataUrl;
 				
-				if (isBrand) {
-					return userRef.update({
-						image: imgDataUrl
-					})
-				} else {
-					return brandRef.update({
-						image: imgDataUrl
-					})
-				}
-				
+				return userRef.update({
+					image: imgDataUrl
+				})
 			}
 		}
 	}

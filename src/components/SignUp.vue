@@ -41,6 +41,7 @@
 						})
 						db.collection("users").doc(updateUser.uid).set({
 							name: this.name,
+							email: this.email,
 							followers: this.followers,
 							location: this.location,
 							image: "https://i.imgur.com/VZICx2G.png",

@@ -4,7 +4,7 @@
 			<div class="centered-content">
 				<h2>Featured Ambassadors</h2>
 					<div class="featured-users">
-						<article v-for="(user, idx) in premium" :key="idx" class="featured-article" v-on:click='interest(user)'>
+						<article v-for="(user, idx) in premium" :key="idx" class="featured-article" v-on:click='interest(user)' v-if="user.brand === false">
 							<img :src="user.image" class="featured-img">
 							<div class="hover-text">
 								<h3>{{ user.name }}</h3>
@@ -31,7 +31,7 @@
       <h4>{{ user.followers }} <i class="fas fa-users"></i></h4>
       <h4>{{ user.location }}</h4>
       <p>{{ user.about }}</p>
-      <button class="connect-btn" @click="show = !show; isActive = !isActive" v-show="showBrand">Show Interest</button>
+      <button class="connect-btn" @click="show = !show; isActive = !isActive; connect()" v-show="showBrand">Show Interest</button>
     </div>
 	</div>
 </template>
@@ -44,21 +44,21 @@
 		name: 'ambassadors',
 		data () {
 			return {
-				users: [], // Displays users
-				premium: [], // Displays premium users
-        user: [], // Checks selected user
-				currUser: [], // Checks if user is a brand
-        show: false, // Shows .lightbox
-        isActive: true, // Shows .container
-				showBrand: false // Shows brand UI
+				users: [], 					// Displays users
+				premium: [], 				// Displays premium users
+        user: [], 					// Checks selected user
+				currUser: [], 			// Checks if user is a brand
+        show: false, 				// Shows .lightbox
+        isActive: true, 		// Shows .container
+				showBrand: false 		// Shows brand UI
 			}
 		},
     firestore() {
 			var loggedUser = firebase.auth().currentUser
       return {
-        users: db.collection('users'),
+        users: db.collection('users').where("brand", "==", false),
 				premium: db.collection('users').where("premium", "==", true),
-				currUser: db.collection('brands').doc(loggedUser.uid)
+				currUser: db.collection('users').doc(loggedUser.uid)
       }
     },
 		methods: {
@@ -76,6 +76,11 @@
 					this.showBrand = true
 				} else {
 					this.showBrand = false
+				}
+			},
+			connect: function() {
+				if (this.currUser.brand) {
+					console.log("Brand: " + this.currUser.email +  ", " + "Ambassador: " + this.user.email)
 				}
 			}
 		}

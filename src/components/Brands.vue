@@ -4,7 +4,7 @@
 			<div class="centered-content">
 				<h2>Featured Brands</h2>
 					<div class="featured-brands">
-						<article v-for="(brand, idx) in premium" :key="idx" class="featured-article">
+						<article v-for="(brand, idx) in premium" :key="idx" class="featured-article" v-if="brand.brand === true">
 							<div id="image-wrapper"><img :src="brand.image" class="featured-img">
 								<div class="hover-text">
 									<h3>{{brand.name}}</h3>
@@ -40,8 +40,8 @@
 		},
     firestore() {
       return {
-        brands: db.collection('brands'),
-				premium: db.collection('brands').where("premium", "==", true)
+        brands: db.collection('users').where("brand", "==", true),
+				premium: db.collection('users').where("premium", "==", true)
       }
     },
 	}

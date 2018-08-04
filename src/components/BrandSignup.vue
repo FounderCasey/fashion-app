@@ -38,8 +38,9 @@
 						updateUser.updateProfile({
 							displayName: this.name,
 						})
-						db.collection("brands").doc(updateUser.uid).set({
+						db.collection("users").doc(updateUser.uid).set({
 							name: this.name,
+							email: this.email,
 							followers: this.followers,
 							location: this.location,
 							image: "https://i.imgur.com/VZICx2G.png",
